@@ -1,0 +1,27 @@
+data:
+  train_data_source: "DK"
+
+run:
+  experiment_name: 'trauma'
+  note: "study_test_v3"
+  run_suffix: ""
+
+hp_rf:
+  n_estimators: 100
+  min_samples_leaf: 5
+
+hp_ab:
+  n_estimators: 100
+  learning_rate: 0.4
+
+hp_xgb: 
+  eval_metric: "aucpr"
+  max_depth: 10
+
+hp_gam:
+  outer_bags: 25
+  inner_bags: 25
+  max_leaves: 5
+  max_bins: 64
+  seed: 42
+

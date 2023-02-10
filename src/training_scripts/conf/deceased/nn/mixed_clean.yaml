@@ -1,0 +1,31 @@
+data:
+  train_data_source: "mixed_random"
+ 
+run:
+  experiment_name: ''
+  note: ""
+  run_suffix: "_mixed_training_data"
+
+hpd:
+  nn_size: [200,100,20]
+  ps: [0.01,0.001,0.001]
+  n_epochs: 10
+  batch_size: 64
+  embed_p: 0.04
+  wd: 0.2
+  lr_val_factor: 0.5 
+  cb_patience: 5
+  cb_metric:  'valid_loss'
+  weights: True
+  f_beta: 3
+
+tl:
+  load: False
+  write: False
+  freeze: False
+  dk_dls: True
+  tl_lr_factor: 0.5
+  batch_size: 1024
+  cb_patience: 2
+  US_data: "rf_mixed"
+  

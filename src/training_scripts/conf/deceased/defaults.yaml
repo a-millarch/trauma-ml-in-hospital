@@ -1,0 +1,5 @@
+defaults:
+  dep_var: "DECEASED"
+experiment:
+  experiment_name: "trauma_mortality"
+  

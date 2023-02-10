@@ -1,0 +1,28 @@
+data:
+  train_data_source: "DK"
+  
+run:
+  experiment_name: 'trauma'
+  note: ""
+  run_suffix: ""
+  
+hpd:
+  nn_size: [200,100,20]
+  ps: [0.01,0.001,0.001]
+  batch_size: 64
+  embed_p: 0.04
+  wd: 0.2
+  lr_val_factor: 0.5
+  cb_patience: 2
+  weights: False
+  n_epochs: 10
+  cb_metric: "valid_loss"
+  f_beta: 1
+
+tl:
+  load: False
+  write: False
+  freeze: False
+  dk_dls: True
+  tl_lr_factor: 0.5
+  US_data: "tqip"

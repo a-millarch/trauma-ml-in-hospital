@@ -1,0 +1,5 @@
+defaults:
+  dep_var: "LOS48HOURSPLUS"
+experiment:
+  experiment_name: "trauma_los"
+  
