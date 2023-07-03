@@ -4,18 +4,12 @@ import numpy as np
 import pandas as pd
 from pandas.api.types import is_string_dtype, is_numeric_dtype, is_categorical_dtype
 
-
 from azureml.core import Workspace, Datastore, Dataset, Environment
 from azureml.data.dataset_factory import DataType
 
 tr ='' #custom path to wd
 sys.path.append(tr)
 from src.features.utils import *
-
-pd.set_option('display.max_colwidth', None)
-pd.set_option('display.max_columns', 250)
-pd.set_option('display.max_rows', 100)
-
 
 current_date = str(datetime.now())[0:10].replace('-','')
 
@@ -88,6 +82,8 @@ proc_lookup = proc_lookup_ds.to_pandas_dataframe()
 
 ais_ds = Dataset.Tabular.from_delimited_files(path= tr+'data/raw/tqip/PUF_AISDIAGNOSIS.csv')
 ais_df = ais_ds.to_pandas_dataframe() 
+
+# AIS processing approach and categories https://github.com/alexbonde/TQIP/blob/main/1_Data_preprocessing.ipynb
 
 body_reg_num =  [str(x) for x in range(1,10)]
 body_reg = ['HEAD','FACE','NECK','THORAX','ABDOMEN','SPINE','UPPER_EXT','LOWER_EXT','UNSPEC']
