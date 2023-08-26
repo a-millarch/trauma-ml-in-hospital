@@ -76,7 +76,7 @@ def proc_split(test_df, cats, conts, dep):
  
  
  
- def plot_ranfor_roc(val_y, predictions, ax):
+def plot_ranfor_roc(val_y, predictions, ax):
     fpr, tpr, _ = roc_curve(val_y, predictions)#[:,1])
     #plt.clf()
     auc = roc_auc_score(val_y, predictions)
@@ -92,7 +92,7 @@ def proc_split(test_df, cats, conts, dep):
     ax.set_xlim([0.0, 1.0])
     ax.set_ylim([0.0, 1.05])
     
- def rf_plot_precision_recall(ys, preds, ax):
+def rf_plot_precision_recall(ys, preds, ax):
     precision, recall, thresholds = precision_recall_curve(ys, preds, pos_label=1)
     #
     #f1 = f1_score(ys, preds)

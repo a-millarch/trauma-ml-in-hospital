@@ -216,9 +216,7 @@ class BinarySingleLabelNN():
         trn_dl = TabDataLoader(self.to, self.hpd ["batch_size"], shuffle=True, drop_last=True)
         val_dl = TabDataLoader(self.to_valid,self.hpd ["batch_size"])
         self.dls = DataLoaders(trn_dl, val_dl)
-
-
-    
+        
 
     def plot(self,roc_auc=None, valid_df =None, plots=['roc_auc','precision_recall']):                       
         fig, axs = plt.subplots(ncols=2, nrows=1, figsize=(11,4), dpi =100,  facecolor='w', edgecolor='k')
@@ -293,35 +291,35 @@ class BinarySingleLabelNN():
         else:
             pass
             
-        def get_metrics(learn, dl=None, plot_only = True):
-    if dl:
-        preds, y = learn.get_preds(dl=dl)
-    else:
-        preds, y = learn.get_preds()
+    def get_metrics(learn, dl=None, plot_only = True):
+        if dl:
+            preds, y = learn.get_preds(dl=dl)
+        else:
+            preds, y = learn.get_preds()
+            
+        if learn.pile == "slp":
+            preds = transform_preds(preds)
+        else:
+            pass
         
-    if learn.pile == "slp":
-        preds = transform_preds(preds)
-    else:
-        pass
-    
-    y_names=learn.dls.y_names
-    
-    n_classes=len(y_names)
-
-    valid = pd.DataFrame( )
-
-    for x in range(n_classes):
-        valid['y_true_'+(y_names[x])] = [i[x] for i in y.tolist()] 
-        valid['y_score_'+(y_names[x])] = [i[x] for i in preds.tolist()] 
-    
-    roc_auc_dict={}
-    brier_dict={}
-    
-    for i,j in zip(range(n_classes), y_names):
-        l,AUC,h = roc_auc_ci((valid[('y_true_'+y_names[i])]), (valid[('y_score_'+y_names[i])]), positive=1)
-        roc_auc_dict[j]=AUC
-        b = brier_score_loss((valid[('y_true_'+y_names[i])]), (valid[('y_score_'+y_names[i])]))
-        brier_dict[j]=b   
+        y_names=learn.dls.y_names
         
-    return roc_auc_dict, valid, brier_dict
+        n_classes=len(y_names)
+
+        valid = pd.DataFrame( )
+
+        for x in range(n_classes):
+            valid['y_true_'+(y_names[x])] = [i[x] for i in y.tolist()] 
+            valid['y_score_'+(y_names[x])] = [i[x] for i in preds.tolist()] 
+        
+        roc_auc_dict={}
+        brier_dict={}
+        
+        for i,j in zip(range(n_classes), y_names):
+            l,AUC,h = roc_auc_ci((valid[('y_true_'+y_names[i])]), (valid[('y_score_'+y_names[i])]), positive=1)
+            roc_auc_dict[j]=AUC
+            b = brier_score_loss((valid[('y_true_'+y_names[i])]), (valid[('y_score_'+y_names[i])]))
+            brier_dict[j]=b   
+            
+        return roc_auc_dict, valid, brier_dict
 

@@ -39,10 +39,10 @@ def roc_auc_ci(y_true, y_score, positive=1):
 def dk_test_roc_auc_ci(AUC, dep_var="DECEASED"):
     # no. pos cases and negative static due to static test data. 
     #change n1 to N posive and n2 to N negative if changing test dataset.
-    if dep_var = "LOS48HOURSPLUS":
+    if dep_var == "LOS48HOURSPLUS":
         N1 = 215 
         N2 = 92
-    elif dep_var = "DECEASED":
+    elif dep_var == "DECEASED":
         N1= 22
         N2= 285
 
