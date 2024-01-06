@@ -1,5 +1,6 @@
 # Comparing machine learning approaches for Danish Trauma Care
-Code accompanying by study: "Assessing optimal methods for transferring machine learning models to low-volume and imbalanced clinical datasets: experiences from predicting outcomes of Danish trauma patients" available at: https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2023.1249258/full
+Code accompanying by study: "Assessing optimal methods for transferring machine learning models to low-volume and imbalanced clinical datasets: experiences from predicting outcomes of Danish trauma patients" available at: 
+https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2023.1249258/full
 
 ## How to use
 Pre-procesing is found in src/data/preprocessing.py but requires both TQIP and DTR datasets readily available in /data/raw/ to be run. 
